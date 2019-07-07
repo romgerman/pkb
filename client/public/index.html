@@ -1,0 +1,58 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+  <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
+</head>
+<body>
+  <div id="app">
+    <div class="container">
+      
+      <div class="row">
+        <div class="column column-50">
+          <h3>Долги</h3>
+          <debt-table></debt-table>
+        </div>
+        <div class="column column-50">
+          <h3>Портфели</h3>
+          <portfolio-table></portfolio-table>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="column column-50">
+          <h3>Платежи</h3>
+          <payment-table></payment-table>
+        </div>
+        <div class="column column-50">
+          <h3>Должники с суммой к взысканию более 150 руб.</h3>
+          <person-table></person-table>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="column column-50">
+          <h3>Портфели в работе</h3>
+          <work-portfolio-table></work-portfolio-table>
+          <h3>Долги без платежей</h3>
+          <debt-without-payment></debt-without-payment>
+        </div>
+        <div class="column column-50">
+          <h3>Эффективность портфелей</h3>
+          <portfolio-efficiency></portfolio-efficiency>
+          <h3>Эффективность в месяц</h3>
+          <month-efficiency></month-efficiency>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
