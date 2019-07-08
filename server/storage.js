@@ -1,14 +1,15 @@
 const mysql = require('mysql')
 const utils = require('./utils')
+const config = require('./config.json')
 
 // CREATE DATABASE `collection` /*!40100 COLLATE 'utf8_general_ci' */
 
 const connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : 'root',
-  database : 'collection',
-  port     : '3306'
+  host     : config.host,
+  user     : config.user,
+  password : config.password,
+  database : config.database,
+  port     : config.port
 })
 
 const createPersonTableSQL = `

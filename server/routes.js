@@ -1,7 +1,10 @@
 const Router = require('koa-router')
-const utils = require('./utils')
+const bodyParser = require('koa-bodyparser')
+const mysql = require('mysql')
 
 const router = new Router()
+
+router.use(bodyParser())
 
 function dbQuery(ctx, query) {
   return new Promise((resolve, reject) => {
@@ -113,6 +116,24 @@ function selectDebtWithoutPayment(ctx) {
 
 router.get('/debt/nopayment', async ctx => {
   ctx.body = await selectDebtWithoutPayment(ctx)
+})
+
+function updatePerson(ctx, id, fio) {
+  let query = 'UPDATE person AS p SET p.FIO = "' + fio + '" WHERE p.Id_person = ' + id
+
+  return dbQuery(ctx, query)
+}
+
+router.put('/person', async ctx => {
+  if (!ctx.request.body.fio || !ctx.request.body.id) {
+    ctx.status = 452
+    return
+  }
+
+  const { fio, id } = ctx.request.body
+  await updatePerson(ctx, id, fio)
+
+  ctx.status = 200
 })
 
 module.exports = router.routes()

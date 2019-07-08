@@ -249,6 +249,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./components/InlineEditInput.vue":
+/*!****************************************!*\
+  !*** ./components/InlineEditInput.vue ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _InlineEditInput_vue_vue_type_template_id_1a538d88___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./InlineEditInput.vue?vue&type=template&id=1a538d88& */ "./components/InlineEditInput.vue?vue&type=template&id=1a538d88&");
+/* harmony import */ var _InlineEditInput_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./InlineEditInput.vue?vue&type=script&lang=js& */ "./components/InlineEditInput.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _InlineEditInput_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _InlineEditInput_vue_vue_type_template_id_1a538d88___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _InlineEditInput_vue_vue_type_template_id_1a538d88___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "components/InlineEditInput.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./components/InlineEditInput.vue?vue&type=script&lang=js&":
+/*!*****************************************************************!*\
+  !*** ./components/InlineEditInput.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_index_js_vue_loader_options_InlineEditInput_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../node_modules/vue-loader/lib??vue-loader-options!./InlineEditInput.vue?vue&type=script&lang=js& */ "./node_modules/vue-loader/lib/index.js?!./components/InlineEditInput.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_vue_loader_lib_index_js_vue_loader_options_InlineEditInput_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./components/InlineEditInput.vue?vue&type=template&id=1a538d88&":
+/*!***********************************************************************!*\
+  !*** ./components/InlineEditInput.vue?vue&type=template&id=1a538d88& ***!
+  \***********************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_InlineEditInput_vue_vue_type_template_id_1a538d88___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../node_modules/vue-loader/lib??vue-loader-options!./InlineEditInput.vue?vue&type=template&id=1a538d88& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./components/InlineEditInput.vue?vue&type=template&id=1a538d88&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_InlineEditInput_vue_vue_type_template_id_1a538d88___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_InlineEditInput_vue_vue_type_template_id_1a538d88___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./components/MonthEfficiency.vue":
 /*!****************************************!*\
   !*** ./components/MonthEfficiency.vue ***!
@@ -1161,6 +1230,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data() {
@@ -1174,6 +1245,31 @@ __webpack_require__.r(__webpack_exports__);
     .then(data => {
       this.items = data
     })
+  },
+  methods: {
+    editCompleted(text, id) {
+      let data = {
+        fio: text,
+        id
+      }
+      
+      fetch('/person', {
+        method: 'PUT',
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then()
+
+      let item = this.items.find(x => x.Id_person === id)
+      item.FIO = text
+      let index = this.items.indexOf(item)
+      this.items[index] = item
+      this.items = this.items
+    }
+  },
+  components: {
+    'inline-edit': __webpack_require__(/*! ./InlineEditInput.vue */ "./components/InlineEditInput.vue").default
   }
 });
 
@@ -1219,6 +1315,46 @@ __webpack_require__.r(__webpack_exports__);
     .then(data => {
       this.items = data
     })
+  }
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/index.js?!./components/InlineEditInput.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib??vue-loader-options!./components/InlineEditInput.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+
+/**
+ * Events: completed
+ */
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: [ 'text' ],
+  data() {
+    return {
+      editing: false,
+      inputText: this.text
+    }
+  },
+  methods: {
+    editCompleted() {
+      this.editing = false
+      this.$emit('completed', this.inputText)
+    }
   }
 });
 
@@ -1529,7 +1665,20 @@ var render = function() {
         return _c("tr", [
           _c("td", [_vm._v(_vm._s(item.Id_debt))]),
           _vm._v(" "),
-          _c("td", [_vm._v(_vm._s(item.FIO))]),
+          _c(
+            "td",
+            [
+              _c("inline-edit", {
+                attrs: { text: item.FIO },
+                on: {
+                  completed: function($event) {
+                    return _vm.editCompleted($event, item.Id_person)
+                  }
+                }
+              })
+            ],
+            1
+          ),
           _vm._v(" "),
           _c("td", [_vm._v(_vm._s(item.Portfolio_name))]),
           _vm._v(" "),
@@ -1609,6 +1758,68 @@ var staticRenderFns = [
     ])
   }
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./components/InlineEditInput.vue?vue&type=template&id=1a538d88&":
+/*!*****************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./components/InlineEditInput.vue?vue&type=template&id=1a538d88& ***!
+  \*****************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("span", { attrs: { title: "Нажмите для редактирования" } }, [
+    !_vm.editing
+      ? _c(
+          "span",
+          {
+            on: {
+              click: function($event) {
+                _vm.editing = true
+              }
+            }
+          },
+          [_vm._v(_vm._s(_vm.inputText))]
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.editing
+      ? _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.inputText,
+              expression: "inputText"
+            }
+          ],
+          attrs: { type: "text", autofocus: "" },
+          domProps: { value: _vm.inputText },
+          on: {
+            blur: _vm.editCompleted,
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.inputText = $event.target.value
+            }
+          }
+        })
+      : _vm._e()
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
